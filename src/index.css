@@ -4,12 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-
+/* Standardwerte für das helle Theme (CSS-Variablen) */
 :root {
   --bgColor: white;
   --mainColor: black;
 }
 
+/* Überschreibt die Variablen wenn data-theme="dark" am HTML-Element gesetzt ist */
 [data-theme="dark"] {
   --bgColor: black;
   --mainColor: white;
