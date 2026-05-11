@@ -19,10 +19,10 @@ export default function Header() {
                         end={link.target === "/"}
                         className={({ isActive }) => `
                         ${index === 0 ? "font-montserrat font-medium" : ""}
-                        px-4 py-2 rounded-md transition-colors
+                        px-4 py-2 rounded-md
                             ${isActive
                                 ? "bg-black text-white cursor-default"
-                                : "text-black hover:bg-gray-200"
+                                :  "hover:bg-gray-200"
                             }
     `}
                     >
