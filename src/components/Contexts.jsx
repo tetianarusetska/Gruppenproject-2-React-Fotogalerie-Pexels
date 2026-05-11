@@ -5,7 +5,6 @@ import { darkTheme, lightTheme } from "../theme/theme.js";
 
 // Übergeordnete Provider-Komponente, die das Theme an alle Kindkomponenten weitergibt
 export default function Contexts({ children }) {
-
     // Zustand für das aktuelle Theme – startet mit dem hellen Theme
     const [theme, setTheme] = useState(lightTheme);
 
