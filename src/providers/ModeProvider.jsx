@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import ThemeContext from "../contexts/ThemeContext.js";
+import ThemeContext from "../contexts/ModeContext.js";
 import { darkTheme, lightTheme } from "../theme/theme.js";
 
 
 // Übergeordnete Provider-Komponente, die das Theme an alle Kindkomponenten weitergibt
-export default function Contexts({ children }) {
+export default function ModeProvider({ children }) {
     // Zustand für das aktuelle Theme – startet mit dem hellen Theme
     const [theme, setTheme] = useState(lightTheme);
 

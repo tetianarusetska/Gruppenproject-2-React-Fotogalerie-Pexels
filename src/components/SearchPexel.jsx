@@ -1,6 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
+import { usePhoto } from "../providers/ModalProvider.jsx"
+
 
 function SearchPexel() {
+
+  const { openPhoto } = usePhoto();
+
   // Hier speichern wir alle Bilder
   const [bilder, setBilder] = useState([]);
 
@@ -75,6 +80,7 @@ function SearchPexel() {
             src={bild.src.large}
             alt={bild.alt}
             className="w-full hover:scale-[1.02] transition-transform duration-300"
+            onClick={() => openPhoto(bild)}
           />
 
           <p>{bild.photographer}</p>

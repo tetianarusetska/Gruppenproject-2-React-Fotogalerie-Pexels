@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home.jsx"
-import PhotoDetail from "./pages/PhotoDetail.jsx"
+import PhotoModal from "./pages/PhotoModal.jsx"
 
 export default function Router() {
 
@@ -9,7 +9,7 @@ export default function Router() {
       <Routes>
 
         <Route path="/" element={<Home />} />
-        <Route path="/foto" element={<PhotoDetail />} />
+        <Route path="/photo/:id" element={<PhotoModal/>} />
 
       </Routes>
     </>
