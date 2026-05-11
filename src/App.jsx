@@ -1,14 +1,10 @@
-import SearchPexel from "./components/SearchPexel";
-import ThemedButton from "./components/ThemedButton.jsx"
+import Router from "./Router.jsx";
 
-function App() {
+export default function App() {
+
   return (
-    <main>
-      <h1>Pexels Galerie</h1>
-      <ThemedButton />
-      <SearchPexel />
-    </main>
-  );
+    <>
+      <Router />
+    </>
+  )
 }
-
-export default App;

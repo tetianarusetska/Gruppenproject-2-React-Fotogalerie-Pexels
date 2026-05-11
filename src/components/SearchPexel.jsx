@@ -1,4 +1,4 @@
- import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function SearchPexel() {
   // Hier speichern wir alle Bilder
@@ -30,10 +30,11 @@ function SearchPexel() {
       const daten = await antwort.json();
 
       // alte + neue Bilder zusammenfügen
-      setBilder((alteBilder) => [
-        ...alteBilder,
-        ...daten.photos,
-      ]);
+      setBilder((alteBilder) => {
+        const neueIds = new Set(alteBilder.map((b) => b.id));
+        const gefiltert = daten.photos.filter((b) => !neueIds.has(b.id));
+        return [...alteBilder, ...gefiltert];
+      });
     } catch (fehler) {
       console.error("Fehler:", fehler);
     } finally {
