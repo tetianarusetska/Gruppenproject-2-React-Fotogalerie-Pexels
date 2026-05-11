@@ -68,12 +68,13 @@ function SearchPexel() {
   }, [laedt]);
 
   return (
-    <section className="galerie">
+    <section className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-6 space-y-6">
       {bilder.map((bild) => (
-        <article className="bild-karte" key={bild.id}>
+        <article className="break-inside-avoid overflow-hidden" key={bild.id}>
           <img
-            src={bild.src.medium}
+            src={bild.src.large}
             alt={bild.alt}
+            className="w-full hover:scale-[1.02] transition-transform duration-300"
           />
 
           <p>{bild.photographer}</p>
