@@ -1,14 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import ThemedButton from "./ThemedButton.jsx"
 
 
 export default function Header() {
     const links = [
         { target: "/", displayName: "Home" },
         { target: "/favorites", displayName: "Favorites" },
-
-
-
     ]
 
     return (
@@ -28,7 +26,7 @@ export default function Header() {
                             px-4 py-2 rounded-md transition-colors
                             ${isActive
                                 ? "font-semibold"
-                                : "hover:bg-gray-200"
+                                : "hover:bg-gray-200 hover:text-black"
                             }
                         `}
                     >
@@ -42,6 +40,8 @@ export default function Header() {
 
                 {/* right side buttons */}
                 <div className="relative group ml-auto flex items-center gap-3">
+
+                    <ThemedButton />
 
                     {/* profile button */}
                     <NavLink

@@ -96,18 +96,18 @@ function SearchPexel() {
             value={suchEingabe}
             onChange={(event) => setSuchEingabe(event.target.value)}
             placeholder="Suche nach Bildern..."
-            className="w-full rounded-full border border-gray-300 px-5 py-3 outline-none focus:border-black"
+            className="w-full text-black rounded-full border border-gray-300 px-5 py-3 outline-none focus:border-black"
           />
 
           <button
             type="submit"
-            className="rounded-full bg-black px-6 py-3 text-white hover:bg-gray-800"
+            className="rounded-full bg-[var(--mainColor)] px-6 py-3 text-[var(--bgColor)] hover:bg-gray-800"
           >
             Suchen
           </button>
           <div className="flex flex-wrap justify-center gap-3">
             <select
-              className="rounded-full border border-gray-300 px-4 py-2 bg-white outline-none focus:border-black text-sm"
+              className="rounded-full border border-gray-300 px-4 py-2 bg-white text-black outline-none focus:border-black text-sm"
               value={farbe}
               onChange={(e) => neueSucheStarten(query, e.target.value, land)}
             >
@@ -120,7 +120,7 @@ function SearchPexel() {
             </select>
 
             <select
-              className="rounded-full border border-gray-300 px-4 py-2 bg-white outline-none focus:border-black text-sm"
+              className="rounded-full border border-gray-300 px-4 py-2 bg-white text-black outline-none focus:border-black text-sm"
               value={land}
               onChange={(e) => neueSucheStarten(query, farbe, e.target.value)}
             >

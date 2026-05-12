@@ -20,7 +20,7 @@ export default function PhotoModal() {
       onClick={handleBackdropClick}
     >
       {/* Modal-Fenster: Schatten, begrenzte Höhe */}
-      <div className="relative bg-[var(--bgColor)] shadow-2xl max-w-3xl w-full mx-4 overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="relative bg-[var(--bgColor)] shadow-2xl max-w-3xl w-full mx-4 overflow-hidden max-h-[100vh] flex flex-col">
 
         {/* Schließen-Schaltfläche oben rechts */}
         <button
