@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { usePhoto } from "../providers/ModalProvider.jsx"
 
+import { usePexelsSearch } from "../hooks/usePexelsSearch";
 
 function SearchPexel() {
 
@@ -13,45 +14,29 @@ function SearchPexel() {
   const [seite, setSeite] = useState(1);
 
   // Ladezustand
-  const [laedt, setLaedt] = useState(false);
+  // const [laedt, setLaedt] = useState(false);
 
-  // API Key aus .env holen
-  const API_KEY = import.meta.env.VITE_PEXELS_API_KEY;
+  // Query für die Suchbegriffe
+  //const [query, setQuery] = useState("Ozean");
 
-  // Bilder laden
-  async function bilderLaden() {
-    setLaedt(true);
+  // API Call über Hook
+  const [daten, error, laedt] = usePexelsSearch('Ozean', seite)
 
-    try {
-      const antwort = await fetch(
-        `https://api.pexels.com/v1/curated?page=${seite}&per_page=15`,
-        {
-          headers: {
-            Authorization: API_KEY,
-          },
-        }
-      );
+  //console.log(daten);
+  //console.log(error);
+  //console.log(laedt);
 
-      const daten = await antwort.json();
-
-      // alte + neue Bilder zusammenfügen
+  // lädt Bilder beim Start
+  // und wenn sich die Seite ändert
+  useEffect(() => {
+    if (daten && daten.photos){
       setBilder((alteBilder) => {
         const neueIds = new Set(alteBilder.map((b) => b.id));
         const gefiltert = daten.photos.filter((b) => !neueIds.has(b.id));
         return [...alteBilder, ...gefiltert];
       });
-    } catch (fehler) {
-      console.error("Fehler:", fehler);
-    } finally {
-      setLaedt(false);
     }
-  }
-
-  // lädt Bilder beim Start
-  // und wenn sich die Seite ändert
-  useEffect(() => {
-    bilderLaden();
-  }, [seite]);
+  }, [daten]);
 
   // Infinity Scroll
   useEffect(() => {
@@ -82,12 +67,12 @@ function SearchPexel() {
             className="w-full hover:scale-[1.02] transition-transform duration-300"
             onClick={() => openPhoto(bild)}
           />
-
           <p>{bild.photographer}</p>
         </article>
       ))}
 
       {laedt && <p>Lade Bilder...</p>}
+      {error && <p>Fehler: {error}</p>}
     </section>
   );
 }
