@@ -1,8 +1,8 @@
-export async function search(query, orientation, size, color, locale) {
+export async function search(query, page, orientation, size, color, locale) {
     const apiKey = import.meta.env.VITE_PEXELS_API_KEY;
 
     const encodedQuery = encodeURIComponent(query);
-    let url = `https://api.pexels.com/v1/search/?query=${encodedQuery}&page=1&per-page=15`;
+    let url = `https://api.pexels.com/v1/search/?query=${encodedQuery}&page=${page}&per-page=15`;
 
     if (orientation !== "") {
         const encodedOrientation = encodeURIComponent(orientation);
