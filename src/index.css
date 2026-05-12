@@ -8,6 +8,7 @@
 :root {
   --bgColor: white;
   --mainColor: black;
+  --mainFont: "Montserrat";
 }
 
 /* Überschreibt die Variablen wenn data-theme="dark" am HTML-Element gesetzt ist */
@@ -20,6 +21,7 @@ body {
   background-color: var(--bgColor);
   color: var(--mainColor);
   transition: 0.3s ease;
+  font-family: var(--mainFont);
 }
 
 
