@@ -1,6 +1,7 @@
- import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { usePhoto } from "../providers/ModalProvider.jsx";
 import { usePexelsSearch } from "../hooks/usePexelsSearch";
+import LikeButton from "./LikeButton.jsx"
 
 function SearchPexel() {
   const { openPhoto } = usePhoto();
@@ -20,16 +21,16 @@ function SearchPexel() {
   const kategorien = ["Natur", "Tiere", "Gebäude", "Meer", "Menschen", "Reisen"];
   const farben = ["red", "orange", "yellow", "green", "turquoise", "blue", "violet", "pink", "brown", "black", "gray", "white"];
   const laenderOptionen = [
-    { code: "en-US", name: "United States"}, { code: "pt-BR", name: "Brazil"}, { code: "es-ES", name: "Spain"}, 
-    { code: "ca-ES", name: "Catalonia"}, { code: "de-DE", name: "Germany"}, { code: "it-IT", name: "Italy"}, 
-    { code: "fr-FR", name: "France"}, { code: "sv-SE", name: "Sweden"}, { code: "id-ID", name: "Indonesia"}, 
-    { code: "pl-PL", name: "Poland"}, { code: "ja-JP", name: "Japan"}, { code: "zh-TW", name: "Taiwan"}, 
-    { code: "zh-CN", name: "China"}, { code: "ko-KR", name: "South Korea"}, { code: "th-TH", name: "Thailand"}, 
-    { code: "nl-NL", name: "Netherlands"}, { code: "hu-HU", name: "Hungary"}, { code: "vi-VN", name: "Vietnam"}, 
-    { code: "cs-CZ", name: "Czech Republic"}, { code: "da-DK", name: "Denmark"}, { code: "fi-FI", name: "Finland"}, 
-    { code: "uk-UA", name: "Ukraine"}, { code: "el-GR", name: "Greece"}, { code: "ro-RO", name: "Romania"}, 
-    { code: "nb-NO", name: "Norway"}, { code: "sk-SK", name: "Slovakia"}, { code: "tr-TR", name: "Turkey"}, 
-    { code: "ru-RU", name: "Russia"}
+    { code: "en-US", name: "United States" }, { code: "pt-BR", name: "Brazil" }, { code: "es-ES", name: "Spain" },
+    { code: "ca-ES", name: "Catalonia" }, { code: "de-DE", name: "Germany" }, { code: "it-IT", name: "Italy" },
+    { code: "fr-FR", name: "France" }, { code: "sv-SE", name: "Sweden" }, { code: "id-ID", name: "Indonesia" },
+    { code: "pl-PL", name: "Poland" }, { code: "ja-JP", name: "Japan" }, { code: "zh-TW", name: "Taiwan" },
+    { code: "zh-CN", name: "China" }, { code: "ko-KR", name: "South Korea" }, { code: "th-TH", name: "Thailand" },
+    { code: "nl-NL", name: "Netherlands" }, { code: "hu-HU", name: "Hungary" }, { code: "vi-VN", name: "Vietnam" },
+    { code: "cs-CZ", name: "Czech Republic" }, { code: "da-DK", name: "Denmark" }, { code: "fi-FI", name: "Finland" },
+    { code: "uk-UA", name: "Ukraine" }, { code: "el-GR", name: "Greece" }, { code: "ro-RO", name: "Romania" },
+    { code: "nb-NO", name: "Norway" }, { code: "sk-SK", name: "Slovakia" }, { code: "tr-TR", name: "Turkey" },
+    { code: "ru-RU", name: "Russia" }
   ];
 
   useEffect(() => {
@@ -154,14 +155,22 @@ function SearchPexel() {
 
       <section className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-6 space-y-6">
         {bilder.map((bild) => (
-          <article className="break-inside-avoid overflow-hidden" key={bild.id}>
+          <article
+            className="break-inside-avoid overflow-hidden relative"
+            key={bild.id}
+          >
             <img
               src={bild.src.large}
               alt={bild.alt || "Pexels Bild"}
               className="w-full cursor-pointer hover:scale-[1.02] transition-transform duration-300"
               onClick={() => openPhoto(bild)}
             />
-            <p>{bild.photographer}</p>
+
+            <div className="absolute top-3 right-3 hover:scale-110 transition">
+              <LikeButton />
+            </div>
+
+            <p className="mt-2">{bild.photographer}</p>
           </article>
         ))}
 
