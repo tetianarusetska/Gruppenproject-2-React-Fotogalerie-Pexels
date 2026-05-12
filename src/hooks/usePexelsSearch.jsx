@@ -29,7 +29,7 @@ export function usePexelsSearch(query, page, orientation, size, color, locale) {
             }
         }
         load();
-    }, [query, page])
+    }, [query, page, color, locale])
 
     return [results, error, isLoading];
 }
