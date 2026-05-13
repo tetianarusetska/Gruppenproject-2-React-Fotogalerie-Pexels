@@ -15,7 +15,7 @@ function SearchPexel() {
 
   const laedtRef = useRef(laedt);
 
-  const kategorien = ["Natur", "Tiere", "Gebäude", "Meer", "Menschen", "Reisen"];
+  const kategorien = ["Nature", "Animals", "Buildings", "Sea", "People", "Travel"];
 
   useEffect(() => {
     if (daten && daten.photos) {
@@ -78,7 +78,7 @@ function SearchPexel() {
             type="text"
             value={suchEingabe}
             onChange={(event) => setSuchEingabe(event.target.value)}
-            placeholder="Suche nach Bildern..."
+            placeholder="Search..."
             className="w-full rounded-full border border-gray-300 px-5 py-3 outline-none focus:border-black"
           />
 
@@ -86,7 +86,7 @@ function SearchPexel() {
             type="submit"
             className="rounded-full bg-black px-6 py-3 text-white hover:bg-gray-800"
           >
-            Suchen
+            Search
           </button>
         </form>
 
