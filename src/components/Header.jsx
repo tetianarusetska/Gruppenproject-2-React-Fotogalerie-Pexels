@@ -26,7 +26,7 @@ export default function Header() {
                             px-4 py-2 rounded-md transition-colors
                             ${isActive
                                 ? "font-semibold"
-                                : "hover:bg-gray-200 hover:text-black"
+                                : "hover:bg-neutral-200 hover:text-black"
                             }
                         `}
                     >
@@ -48,7 +48,7 @@ export default function Header() {
                         to="/favorites"
                         className="
                             p-2 rounded-full
-                             hover:bg-gray-200
+                             hover:bg-neutral-200
                             transition-colors
                             flex items-center justify-center
                                 "
@@ -69,7 +69,7 @@ export default function Header() {
                              w-40
                     
                             rounded-xl
-                            border border-gray-200
+                            border border-neutral-200
                             overflow-hidden
 
                             opacity-0 invisible
@@ -90,7 +90,7 @@ export default function Header() {
                             className="
                                 block
                                 px-4 py-2
-                                 hover:bg-gray-100
+                                 hover:bg-neutral-100
                                 "
                         >
                             Profile
@@ -119,7 +119,7 @@ export default function Header() {
                             bg-black text-white
                             text-[18px]
                             px-4 py-2 rounded-md
-                            hover:bg-gray-800
+                            hover:bg-neutral-800
                             transition-colors
                         "
                 >
