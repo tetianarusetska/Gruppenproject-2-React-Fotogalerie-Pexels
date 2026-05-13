@@ -1,4 +1,5 @@
 import { FaHeart } from "react-icons/fa"
+import { FaRegHeart } from "react-icons/fa";
 import { useFavorites } from "../providers/FavoritesProvider.jsx"
 
 const LikeButton = ({ bild }) => {
@@ -19,15 +20,22 @@ const LikeButton = ({ bild }) => {
     }
 
     return (
-        <button
-            onClick={toggleLike}
-            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center"
-        >
-            <FaHeart
-                size={18}
-                className={isLiked ? "text-red-500" : "text-black"}
-            />
-        </button>
+<button
+    onClick={toggleLike}
+    className="w-10 h-10 rounded-full bg-black  backdrop-blur-sm backdrop-filter bg-opacity-20 flex items-center justify-center"
+>
+    {isLiked ? (
+        <FaHeart
+            size={18}
+            className="text-white"
+        />
+    ) : (
+        <FaRegHeart
+            size={18}
+            className="text-white"
+        />
+    )}
+</button>
     );
 };
 

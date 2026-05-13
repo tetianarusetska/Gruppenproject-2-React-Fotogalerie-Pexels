@@ -1,4 +1,5 @@
-import { FaHeart } from "react-icons/fa"
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
 import { useFavorites } from "../providers/FavoritesProvider.jsx"
 
 export default function PhotoCard({ bild, openPhoto }) {
@@ -31,12 +32,19 @@ export default function PhotoCard({ bild, openPhoto }) {
 
             <button
                 onClick={toggleLike}
-                className="absolute top-3 right-3 bg-white/80 p-2 rounded-full"
+                className="absolute top-3 right-3 p-2 w-10 h-10 rounded-full bg-black backdrop-blur-sm backdrop-filter bg-opacity-20 flex items-center justify-center transition-transform hover:scale-110 duration-300 ease-in-out"
             >
-                <FaHeart
-                    size={20}
-                    className={isLiked ? "text-red-500" : "text-black"}
-                />
+                {isLiked ? (
+                    <FaHeart
+                        size={18}
+                        className="text-white"
+                    />
+                ) : (
+                    <FaRegHeart
+                        size={18}
+                        className="text-white"
+                    />
+                )}
             </button>
 
             <p>{bild.photographer}</p>
