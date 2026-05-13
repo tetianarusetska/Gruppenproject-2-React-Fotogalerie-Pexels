@@ -14,7 +14,7 @@ export default function Favorites() {
     return (
         <>
             <Header />
-            
+            <DeleteFavButton />
             {favorites.length === 0 ? (
                 <p className="p-6 text-center">No favorites yet</p>
             ) : (
