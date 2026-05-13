@@ -173,7 +173,7 @@ function SearchPexel() {
             />
 
             <div className="absolute top-3 right-3 hover:scale-110 transition">
-              <LikeButton />
+              <LikeButton bild={bild} />
             </div>
 
             <p className="mt-2">{bild.photographer}</p>

@@ -1,29 +1,10 @@
-import PhotoCard from "../components/PhotoCard";
-import Header from "../components/Header";
+import PhotoCard from "../components/PhotoCard.jsx"
+import Header from "../components/Header.jsx"
+import { useFavorites } from "../providers/FavoritesProvider.jsx";
 
 export default function Favorites() {
 
-    const favorites = [
-        {
-            id: 1,
-            alt: "Ocean",
-            photographer: "Pexels",
-            src: {
-                large:
-                    "https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg",
-            },
-        },
-
-        {
-            id: 2,
-            alt: "Mountains",
-            photographer: "Pexels",
-            src: {
-                large:
-                    "https://images.pexels.com/photos/417173/pexels-photo-417173.jpeg",
-            },
-        },
-    ];
+    const { favorites } = useFavorites();
 
     function openPhoto(bild) {
         console.log(bild);
@@ -31,18 +12,21 @@ export default function Favorites() {
 
     return (
         <>
-        <Header />
-        <section className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-6 space-y-6">
+            <Header />
 
-            {favorites.map((bild) => (
-                <PhotoCard
-                    key={bild.id}
-                    bild={bild}
-                    openPhoto={openPhoto}
-                />
-            ))}
-
-        </section>
+            {favorites.length === 0 ? (
+                <p className="p-6 text-center">No favorites yet</p>
+            ) : (
+                <section className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 p-6 space-y-6">
+                    {favorites.map((bild) => (
+                        <PhotoCard
+                            key={bild.id}
+                            bild={bild}
+                            openPhoto={openPhoto}
+                        />
+                    ))}
+                </section>
+            )}
         </>
     );
 }
