@@ -18,7 +18,9 @@ function SearchPexel() {
 
   const laedtRef = useRef(laedt);
 
-  const kategorien = ["Natur", "Tiere", "Gebäude", "Meer", "Menschen", "Reisen"];
+ manu-scroll-to-top
+  const kategorien = ["Nature", "Animals", "Buildings", "Sea", "People", "Travel"];
+
   const farben = ["red", "orange", "yellow", "green", "turquoise", "blue", "violet", "pink", "brown", "black", "gray", "white"];
   const laenderOptionen = [
     { code: "en-US", name: "United States" }, { code: "pt-BR", name: "Brazil" }, { code: "es-ES", name: "Spain" },
@@ -32,6 +34,7 @@ function SearchPexel() {
     { code: "nb-NO", name: "Norway" }, { code: "sk-SK", name: "Slovakia" }, { code: "tr-TR", name: "Turkey" },
     { code: "ru-RU", name: "Russia" }
   ];
+ main
 
   useEffect(() => {
     if (daten && daten.photos) {
@@ -96,15 +99,18 @@ function SearchPexel() {
             type="text"
             value={suchEingabe}
             onChange={(event) => setSuchEingabe(event.target.value)}
-            placeholder="Suche nach Bildern..."
-            className="w-full text-black rounded-full border border-gray-300 px-5 py-3 outline-none focus:border-black"
+            manu-scroll-to-top
+            placeholder="Search..."
+            className="w-full rounded-full border border-gray-300 px-5 py-3 outline-none focus:border-black"
+
+            className="w-full text-black rounded-full border border-gray-300 px-5 py-3 outline-none focus:border-black" main
           />
 
           <button
             type="submit"
             className="rounded-full bg-[var(--mainColor)] px-6 py-3 text-[var(--bgColor)] hover:bg-gray-800"
           >
-            Suchen
+            Search
           </button>
           <div className="flex flex-wrap justify-center gap-3">
             <select
