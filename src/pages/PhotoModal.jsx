@@ -1,6 +1,7 @@
 import { usePhoto } from '../providers/ModalProvider.jsx'
 
 export default function PhotoModal() {
+
   // Ausgewähltes Foto und Schließ-Funktion aus dem Kontext holen
   const { selectedPhoto, closePhoto } = usePhoto()
 
@@ -19,7 +20,7 @@ export default function PhotoModal() {
       onClick={handleBackdropClick}
     >
       {/* Modal-Fenster: Schatten, begrenzte Höhe */}
-      <div className="relative bg-[var(--bgColor)] shadow-2xl max-w-3xl w-full mx-4 overflow-hidden max-h-[90vh] flex flex-col">
+      <div className="relative bg-[var(--bgColor)] shadow-2xl max-w-3xl w-full mx-4 overflow-hidden max-h-[100vh] flex flex-col">
 
         {/* Schließen-Schaltfläche oben rechts */}
         <button
@@ -30,28 +31,30 @@ export default function PhotoModal() {
         </button>
 
         {/* Foto in voller Breite, Höhe begrenzt auf 65% des Bildschirms */}
-
         <img
           src={selectedPhoto.src.large2x}
           alt={selectedPhoto.alt}
-          className="max-h-[65vh] w-full object-contain p-[18px]"
+          className="w-full max-h-[75vh] object-contain p-[12px]"
         />
-
 
         {/* Informationsbereich unterhalb des Fotos */}
         <div className="p-5">
+
           {/* Name des Fotografen */}
-          <p className="text-lg font-[Montserrat]">{selectedPhoto.photographer}</p>
+          <p className="text-lg font-[Montserrat]">Photography by {selectedPhoto.photographer}</p>
 
           {/* Externer Link zum Pexels-Profil des Fotografen */}
-
-          <a href={selectedPhoto.photographer_url}
+          <a
+            href={selectedPhoto.photographer_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-[Montserrat] inline-block mt-3 text-sm text-blue-900"
+            className="font-[Montserrat] inline-block mt-1 text-md text-blue-900"
           >
             Profil auf Pexels anzeigen
           </a>
+
+          <p className="text-md mt-1 font-[Montserrat]">{selectedPhoto.alt}</p>
+
         </div>
       </div>
     </div>

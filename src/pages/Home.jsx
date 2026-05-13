@@ -9,7 +9,6 @@ function Home() {
     <main>
       <Header />
       <Hero />
-      <ThemedButton />
       <SearchPexel />
       <PhotoModal />
     </main>
