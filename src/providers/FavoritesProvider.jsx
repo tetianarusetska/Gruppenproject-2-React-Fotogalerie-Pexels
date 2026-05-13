@@ -22,12 +22,19 @@ export default function FavoritesProvider({ children }) {
         });
     }
 
+    function clearFavorites() {
+        dispatch({
+            type: "clear",
+        });
+    }
+
     return (
         <FavoritesContext.Provider
             value={{
                 favorites,
                 addToFavorites,
                 removeFromFavorites,
+                clearFavorites,
             }}
         >
             {children}

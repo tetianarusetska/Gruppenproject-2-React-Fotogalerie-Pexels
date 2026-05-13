@@ -1,5 +1,6 @@
 import PhotoCard from "../components/PhotoCard.jsx"
 import Header from "../components/Header.jsx"
+import DeleteFavButton from "../components/DeleteFavButton.jsx"
 import { useFavorites } from "../providers/FavoritesProvider.jsx";
 
 export default function Favorites() {
@@ -13,7 +14,7 @@ export default function Favorites() {
     return (
         <>
             <Header />
-
+            
             {favorites.length === 0 ? (
                 <p className="p-6 text-center">No favorites yet</p>
             ) : (
