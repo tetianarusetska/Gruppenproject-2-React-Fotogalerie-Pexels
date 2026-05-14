@@ -43,17 +43,28 @@ export default function PhotoModal() {
           {/* Name des Fotografen */}
           <p className="text-lg font-[Montserrat]">Photography by {selectedPhoto.photographer}</p>
 
+          <p className="text-md mt-1 font-[Montserrat]">{selectedPhoto.alt}</p>
+
           {/* Externer Link zum Pexels-Profil des Fotografen */}
           <a
             href={selectedPhoto.photographer_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-[Montserrat] inline-block mt-1 text-md text-blue-900"
+            className="font-[Montserrat] inline-block mt-1 text-md text-blue-900 mr-[12px]"
           >
-            Profil auf Pexels anzeigen
+            View profile on Pexels
+          </a>
+          |
+          <a
+            href={selectedPhoto.src.original}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-[Montserrat] inline-block mt-1 text-md text-blue-900 ml-[12px]"
+          >
+            View full-size photo
           </a>
 
-          <p className="text-md mt-1 font-[Montserrat]">{selectedPhoto.alt}</p>
+
 
         </div>
       </div>

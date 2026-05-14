@@ -88,20 +88,22 @@ export default function Header() {
                         <NavLink
                             to="/favorites"
                             className="
+                                text-[var(--mainColor)]
+
                                 block
                                 px-4 py-2
-                                 hover:bg-neutral-100
+                                 hover:bg-neutral-100 hover:text-black
                                 "
                         >
                             Profile
                         </NavLink>
 
 
-                        <button className="block w-full px-4 py-3 text-left hover:bg-gray-100">
+                        <button className="block w-full px-4 py-3 text-left hover:bg-gray-100 hover:text-black">
                             Settings
                         </button>
 
-                        <button className="block w-full px-4 py-3 text-left hover:bg-gray-100">
+                        <button className="block w-full px-4 py-3 text-left hover:bg-gray-100 hover:text-black">
                             Logout
                         </button>
                     </div>
