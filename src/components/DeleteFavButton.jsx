@@ -13,6 +13,7 @@ export default function DeleteFavButton() {
                     px-4 py-2 rounded-md
                   hover:bg-gray-800
                     transition-colors
+                    ml-[22px]
                 "
         >
             Delete All
