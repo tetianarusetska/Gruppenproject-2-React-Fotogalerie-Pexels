@@ -8,11 +8,9 @@ export default function Router() {
   return (
     <>
       <Routes>
-
         <Route path="/" element={<Home />} />
         <Route path="/photo/:id" element={<PhotoModal/>} />
         <Route path="/favorites" element={<Favorites/>} />
-
       </Routes>
     </>
   )

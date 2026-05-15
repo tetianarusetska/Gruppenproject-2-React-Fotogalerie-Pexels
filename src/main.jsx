@@ -11,7 +11,7 @@ import FavoritesProvider from './providers/FavoritesProvider.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <ModeProvider>
+      <ModeProvider>      
         <ModalProvider>
           <FavoritesProvider>
             <App />
