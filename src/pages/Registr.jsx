@@ -5,7 +5,7 @@ import Carousel from "../components/Carousel.jsx"
 export default function Registr() {
     return <div>
         <Header />
-        <RegistrForm />
         <Carousel />
+        <RegistrForm />
     </div>
 }
