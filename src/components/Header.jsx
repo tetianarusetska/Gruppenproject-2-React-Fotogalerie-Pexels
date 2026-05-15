@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { useEffect, useState } from "react";
 import ThemedButton from "./ThemedButton.jsx"
+import HeaderSearch from "./HeaderSearch.jsx";
 
 
 export default function Header() {
@@ -8,6 +10,28 @@ export default function Header() {
         { target: "/", displayName: "Home" },
         { target: "/favorites", displayName: "Favorites" },
     ]
+
+    const [showSearch, setShowSearch] = useState(false);
+
+    useEffect(() => {
+
+        function handleScroll() {
+
+            const halfWindowHeight =
+                window.innerHeight / 2;
+
+            setShowSearch(
+                window.scrollY > halfWindowHeight
+            );
+        }
+
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+
+    }, []);
 
     return (
         <header className="sticky top-0 z-50"
@@ -36,12 +60,24 @@ export default function Header() {
                     </NavLink>
 
                 ))}
+                {/* header search */}
 
+                <div className="flex-1 flex justify-center">
+
+                    {showSearch && (
+                        <div className="w-full max-w-md mx-6">
+                            <HeaderSearch />
+                        </div>
+
+
+                    )}
+
+                </div>
 
                 {/* right side buttons */}
                 <div className="relative group ml-auto flex items-center gap-3">
 
-                    <ThemedButton />
+
 
                     {/* profile button */}
                     <NavLink
@@ -99,31 +135,39 @@ export default function Header() {
                         </NavLink>
 
 
-                        <button className="block w-full px-4 py-3 text-left hover:bg-gray-100 hover:text-black">
+                        <button className="block w-full px-4 py-3 text-left hover:bg-neutral-100 hover:text-black">
                             Settings
                         </button>
 
-                        <button className="block w-full px-4 py-3 text-left hover:bg-gray-100 hover:text-black">
+                        <button className="block w-full px-4 py-3 text-left hover:bg-neutral-100 hover:text-black">
                             Logout
                         </button>
+                        <div className="
+                            w-6 h-6 p-4 m-3
+                            rounded-full
+                             hover:bg-neutral-200
+                            transition-colors
+                            flex items-center justify-center
+                            ">
+                            <ThemedButton />
+                        </div>
                     </div>
 
 
 
                 </div>
 
-
-
-                {/* register button */}
                 <NavLink
                     to="/registration"
                     className="
-                            bg-black text-white
-                            text-[18px]
-                            px-4 py-2 rounded-md
-                            hover:bg-neutral-800
-                            transition-colors
+                        text-[18px]
+                        px-4 py-2 rounded-md
+                        transition-colors
                         "
+                    style={{
+                        backgroundColor: "var(--mainColor)",
+                        color: "var(--bgColor)",
+                    }}
                 >
                     Register
                 </NavLink>

@@ -21,7 +21,7 @@ export default function ThemeButton() {
                 src={theme.name === "light" ? darkIcon : lightIcon} 
                 alt="theme icon"
                 className="w-6 h-6 block object-contain"
-                style={{ width: '31px', height: '31px', maxWidth: '31px', maxHeight: '31px' }}
+                style={{ width: '18px', height: '18px', maxWidth: '31px', maxHeight: '31px' }}
             />
         </button>
     );
