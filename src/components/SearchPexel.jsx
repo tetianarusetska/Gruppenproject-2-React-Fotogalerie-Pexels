@@ -1,10 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { usePhoto } from "../providers/ModalProvider.jsx";
 import { usePexelsSearch } from "../hooks/usePexelsSearch";
+import { useSearch } from "../providers/SearchProvider.jsx";
 
 import LikeButton from "./LikeButton.jsx";
 import SearchBar from "./SearchBar.jsx";
 import DownloadButton from "./DownloadButton.jsx";
+import Loader from "./Loader.jsx";
 
 function SearchPexel() {
 
@@ -13,7 +15,11 @@ function SearchPexel() {
     const [bilder, setBilder] = useState([]);
     const [seite, setSeite] = useState(1);
 
-    const [query, setQuery] = useState("Ozean");
+    const {
+        query,
+        neueSucheStarten
+    } = useSearch();
+
     const [suchEingabe, setSuchEingabe] = useState("");
 
     const [farbe, setFarbe] = useState("");
@@ -23,6 +29,16 @@ function SearchPexel() {
         usePexelsSearch(query, seite, "", "", farbe, land);
 
     const laedtRef = useRef(laedt);
+
+   {/* pagination reset for header search*/}
+
+    useEffect(() => {
+
+    setBilder([]);
+
+    setSeite(1);
+
+}, [query]);
 
     const kategorien = [
         "Nature",
@@ -79,7 +95,7 @@ function SearchPexel() {
         laedtRef.current = laedt;
     }, [laedt]);
 
-    function neueSucheStarten(
+    function handleNeueSuche(
         neuerSuchbegriff,
         neueFarbe = farbe,
         neuesLand = land
@@ -88,7 +104,8 @@ function SearchPexel() {
         setBilder([]);
         setSeite(1);
 
-        setQuery(neuerSuchbegriff);
+        neueSucheStarten(neuerSuchbegriff);
+
         setFarbe(neueFarbe);
         setLand(neuesLand);
 
@@ -108,7 +125,7 @@ function SearchPexel() {
             return;
         }
 
-        neueSucheStarten(suchEingabe.trim());
+        handleNeueSuche(suchEingabe.trim());
     }
 
     useEffect(() => {
@@ -161,7 +178,7 @@ function SearchPexel() {
                 farben={farben}
                 laenderOptionen={laenderOptionen}
 
-                neueSucheStarten={neueSucheStarten}
+                neueSucheStarten={handleNeueSuche}
 
                 query={query}
                 kategorien={kategorien}
@@ -182,10 +199,10 @@ function SearchPexel() {
                     <article
                         key={bild.id}
                         className="
-        break-inside-avoid
-        overflow-hidden
-        relative
-    "
+                            break-inside-avoid
+                            overflow-hidden
+                            relative
+                        "
                     >
 
                         {/* Bild */}
@@ -193,11 +210,12 @@ function SearchPexel() {
                             src={bild.src.large}
                             alt={bild.alt || "Pexels Bild"}
                             className="
-                                      w-full cursor-pointer
-                                      hover:scale-[1.02]
-                                      transition-transform
-                                      duration-300 ease-in-out
-                                    "
+                                w-full cursor-pointer
+                                hover:scale-[1.02]
+                                transition-transform
+                                duration-300 ease-in-out
+                                rounded-lg
+                            "
                             onClick={() => openPhoto(bild)}
                         />
 
@@ -207,16 +225,11 @@ function SearchPexel() {
                             <LikeButton bild={bild} />
                         </div>
 
-                        {/* Photographer */}
-                        <p className="mt-2">
-                            {bild.photographer}
-                        </p>
-
                     </article>
 
                 ))}
 
-                {laedt && <p>Loading images...</p>}
+                {laedt && <Loader />}
 
                 {error && <p>Error: {error}</p>}
 

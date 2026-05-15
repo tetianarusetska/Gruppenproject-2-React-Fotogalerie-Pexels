@@ -7,6 +7,7 @@ import App from './App.jsx'
 import ModeProvider from './providers/ModeProvider.jsx'
 import { ModalProvider } from './providers/ModalProvider.jsx'
 import FavoritesProvider from './providers/FavoritesProvider.jsx'
+import SearchProvider from "./providers/SearchProvider.jsx";
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -14,7 +15,9 @@ createRoot(document.getElementById('root')).render(
       <ModeProvider>      
         <ModalProvider>
           <FavoritesProvider>
+            <SearchProvider>
             <App />
+            </SearchProvider>
           </FavoritesProvider>
         </ModalProvider>
       </ModeProvider>
