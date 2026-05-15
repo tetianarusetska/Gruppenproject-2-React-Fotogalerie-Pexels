@@ -1,4 +1,6 @@
 import { usePhoto } from '../providers/ModalProvider.jsx'
+import LikeButton from "../components/LikeButton.jsx"
+import DownloadButton from "../components/DownloadButton.jsx"
 
 export default function PhotoModal() {
 
@@ -36,12 +38,31 @@ export default function PhotoModal() {
           X
         </button>
 
-        {/* Großes Bild */}
-        <img
-          src={selectedPhoto.src.large2x}
-          alt={selectedPhoto.alt}
-          className="w-full max-h-[75vh] object-contain p-[12px]"
-        />
+        <div className="relative flex justify-center items-center p-[12px] max-h-[75vh]">
+
+          {/* Wrapper für Bild + Buttons */}
+          <div className="relative inline-block">
+
+            {/* Button-Container (Like + Download) */}
+            <div className="absolute top-3 right-3 flex gap-2 z-10">
+
+              {/* Download Button */}
+              <DownloadButton photo={selectedPhoto} />
+
+              {/* Like Button */}
+              <LikeButton bild={selectedPhoto} />
+
+            </div>
+
+            {/* Bild */}
+            <img
+              src={selectedPhoto.src.large2x}
+              alt={selectedPhoto.alt}
+              className="max-h-[75vh] object-contain"
+            />
+
+          </div>
+        </div>
 
         {/* Informationsbereich unter dem Bild */}
         <div className="p-5">
