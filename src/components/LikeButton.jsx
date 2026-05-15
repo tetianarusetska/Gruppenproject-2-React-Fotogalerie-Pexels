@@ -33,7 +33,7 @@ const LikeButton = ({ bild }) => {
 
         <button
             onClick={toggleLike}
-            className="w-10 h-10 rounded-full bg-black backdrop-blur-sm backdrop-filter bg-opacity-20 flex items-center justify-center"
+            className="w-10 h-10 rounded-full bg-black backdrop-blur-sm backdrop-filter bg-opacity-20 flex hover:scale-110 items-center justify-center"
         >
             {isLiked ? (
                 <FaHeart

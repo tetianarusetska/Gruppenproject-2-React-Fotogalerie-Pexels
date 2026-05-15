@@ -4,6 +4,7 @@ import { usePexelsSearch } from "../hooks/usePexelsSearch";
 
 import LikeButton from "./LikeButton.jsx";
 import SearchBar from "./SearchBar.jsx";
+import DownloadButton from "./DownloadButton.jsx";
 
 function SearchPexel() {
 
@@ -181,35 +182,32 @@ function SearchPexel() {
                     <article
                         key={bild.id}
                         className="
-                            break-inside-avoid
-                            overflow-hidden
-                            relative
-                        "
+        break-inside-avoid
+        overflow-hidden
+        relative
+    "
                     >
 
+                        {/* Bild */}
                         <img
                             src={bild.src.large}
                             alt={bild.alt || "Pexels Bild"}
                             className="
-                                w-full cursor-pointer
-                                hover:scale-[1.02]
-                                transition-transform
-                                duration-300 ease-in-out
-                            "
+                                      w-full cursor-pointer
+                                      hover:scale-[1.02]
+                                      transition-transform
+                                      duration-300 ease-in-out
+                                    "
                             onClick={() => openPhoto(bild)}
                         />
 
-                        <div
-                            className="
-                                absolute top-3 right-3
-                                transition-transform
-                                hover:scale-110
-                                duration-300 ease-in-out
-                            "
-                        >
+                        {/* Like Button + Download Button */}
+                        <div className="absolute top-3 right-3 flex gap-2 z-10">
+                            <DownloadButton photo={bild} />
                             <LikeButton bild={bild} />
                         </div>
 
+                        {/* Photographer */}
                         <p className="mt-2">
                             {bild.photographer}
                         </p>
