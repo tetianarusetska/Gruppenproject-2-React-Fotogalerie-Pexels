@@ -116,7 +116,7 @@ export default function Header() {
 
                 {/* register button */}
                 <NavLink
-                    to="/register"
+                    to="/registration"
                     className="
                             bg-black text-white
                             text-[18px]
