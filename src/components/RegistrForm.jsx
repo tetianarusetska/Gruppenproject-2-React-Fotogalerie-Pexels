@@ -9,13 +9,13 @@ export default function RegistrForm() {
 
     // React Hook Form Setup
     const {
-        register,                    // verbindet Inputs mit dem Formular-State
-        handleSubmit,                // verarbeitet Submit + Validierung
-        reset,                       // setzt das Formular zurück
-        formState: { errors },       // enthält Validierungsfehler von Yup
+        register,                                        // verbindet Inputs mit dem Formular-State
+        handleSubmit,                                    // verarbeitet Submit + Validierung
+        reset,                                           // setzt das Formular zurück
+        formState: { errors },                           // enthält Validierungsfehler von Yup
     } = useForm({
-        mode: "onChange",            // Validierung während der Eingabe
-        resolver: yupResolver(schema), // verbindet Yup Schema mit dem Formular
+        mode: "onChange",                                // Validierung während der Eingabe
+        resolver: yupResolver(schema),                   // verbindet Yup Schema mit dem Formular
     });
 
     // Wird nur ausgeführt, wenn das Formular gültig ist
@@ -39,7 +39,7 @@ export default function RegistrForm() {
 
             {/* ERFOLGSMELDUNG */}
             {success && (
-                <div className="mt-[40px] text-[var(--mainColor)] font-medium text-[18px] text-center">
+                <div className="mt-[20px] text-[var(--mainColor)] font-medium text-[18px] text-center">
                     Account successfully created!
                 </div>
             )}
@@ -47,7 +47,7 @@ export default function RegistrForm() {
             {/* FORMULAR */}
             <form
                 onSubmit={handleSubmit(onSubmit)} // Submit mit Validierung
-                className="mt-[100px] flex flex-col justify-center items-center gap-[25px]"
+                className="mt-[20px] mb-[120px] flex flex-col justify-center items-center gap-[25px]"
             >
 
                 {/* VOR- UND NACHNAME */}
