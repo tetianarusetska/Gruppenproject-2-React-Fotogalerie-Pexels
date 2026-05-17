@@ -35,7 +35,8 @@ export default function RegistrForm() {
     };
 
     return (
-        <div>
+        <div className="flex justify-center items-center
+        min-h-[calc(100vh-80px)]">
 
             {/* ERFOLGSMELDUNG */}
             {success && (
@@ -47,18 +48,27 @@ export default function RegistrForm() {
             {/* FORMULAR */}
             <form
                 onSubmit={handleSubmit(onSubmit)} // Submit mit Validierung
-                className="mt-[20px] mb-[120px] flex flex-col justify-center items-center gap-[25px]"
+                className="
+                    rounded-lg
+
+                    px-24 py-12
+
+                    flex flex-col
+                    justify-center items-center
+                    gap-[25px]
+                    border
+                    "
             >
 
                 {/* VOR- UND NACHNAME */}
                 <div className="flex flex-col gap-[10px]">
                     <label className="leading-[1.2em] font-medium text-[18px]">
-                        First- und Lastname
+                        First- and Lastname
                     </label>
 
                     <input
                         type="text"
-                        className="rounded border-2 border-black h-[32px] w-[350px] text-[16px]"
+                        className="rounded border-2 border-neutral-300 h-[32px] w-[350px] text-[16px]"
                         {...register("fullName")}
                     />
 
@@ -78,7 +88,7 @@ export default function RegistrForm() {
 
                     <input
                         type="text"
-                        className="rounded border-2 border-black h-[32px] w-[350px] text-[16px]"
+                        className="rounded border-2 border-neutral-300 h-[32px] w-[350px] text-[16px]"
                         {...register("username")}
                     />
 
@@ -98,7 +108,7 @@ export default function RegistrForm() {
 
                     <input
                         type="email"
-                        className="rounded border-2 border-black h-[32px] w-[350px] text-[16px]"
+                        className="rounded border-2 border-neutral-300 h-[32px] w-[350px] text-[16px]"
                         {...register("email")}
                     />
 
@@ -118,7 +128,7 @@ export default function RegistrForm() {
 
                     <input
                         type="password"
-                        className="rounded border-2 border-black h-[32px] w-[350px] text-[16px]"
+                        className="rounded border-2 border-neutral-300 h-[32px] w-[350px] text-[16px]"
                         {...register("password")}
                     />
 
@@ -133,12 +143,12 @@ export default function RegistrForm() {
                 {/* PASSWORT BESTÄTIGEN */}
                 <div className="flex flex-col gap-[10px]">
                     <label className="leading-[1.2em] font-medium text-[18px]">
-                       Confirm Password
+                        Confirm Password
                     </label>
 
                     <input
                         type="password"
-                        className="rounded border-2 border-black h-[32px] w-[350px] text-[16px]"
+                        className="rounded border-2 border-neutral-300 h-[32px] w-[350px] text-[16px]"
                         {...register("confirmPassword")}
                     />
 
@@ -158,7 +168,7 @@ export default function RegistrForm() {
 
                     <input
                         type="text"
-                        className="rounded border-2 border-black h-[32px] w-[350px] text-[16px]"
+                        className="rounded border-2 border-neutral-300 h-[32px] w-[350px] text-[16px]"
                         {...register("country")}
                     />
 
@@ -173,7 +183,7 @@ export default function RegistrForm() {
                 {/* SUBMIT BUTTON */}
                 <button
                     type="submit"
-                    className="px-4 py-2 rounded-md font-semibold text-black bg-neutral-200 hover:text-white hover:bg-black"
+                    className="px-4 py-2 rounded-md font-semibold text-[var(--bgColor)] bg-[var(--mainColor)] hover:text-white hover:bg-neutral-800"
                 >
                     Register
                 </button>
