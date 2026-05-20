@@ -1,94 +1,104 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react"
+import { motion } from "framer-motion"
 
-import img1 from "../assets/images/pexels-1.jpg";
-import img2 from "../assets/images/pexels-2.jpg";
-import img3 from "../assets/images/pexels-3.jpg";
-import img4 from "../assets/images/pexels-4.jpg";
-import img5 from "../assets/images/pexels-5.jpg";
+import img1 from "../assets/images/pexels-1.jpg"
+import img2 from "../assets/images/pexels-2.jpg"
+import img3 from "../assets/images/pexels-3.jpg"
+import img4 from "../assets/images/pexels-4.jpg"
+import img5 from "../assets/images/pexels-5.jpg"
+
+const SLIDES = [
+    { src: img1, alt: "Pexels Bild 1" },
+    { src: img2, alt: "Pexels Bild 2" },
+    { src: img3, alt: "Pexels Bild 3" },
+    { src: img4, alt: "Pexels Bild 4" },
+    { src: img5, alt: "Pexels Bild 5" },
+];
+
+// Zeit zwischen automatischen Wechseln (in Millisekunden)
+const INTERVAL = 3000;
 
 export default function Carousel() {
 
-    const images = [img1, img2, img3, img4, img5];
+    // aktueller aktiver Slide
+    const [current, setCurrent] = useState(1);
 
-    // State für alle Slides im Carousel
-    // Hier werden später neue Bilder hinzugefügt
-    const [slides, setSlides] = useState(images);
+    // Anzahl der Slides
+    const n = SLIDES.length;
 
-    // State für den aktuellen aktiven Slide
-    const [index, setIndex] = useState(0);
-
-    // useEffect für automatisches Wechseln der Slides
+    // automatischer Wechsel der Slides
     useEffect(() => {
-
-        // alle 2.5 Sekunden:
-        // nächstes Bild anzeigen
         const interval = setInterval(() => {
-            setIndex((prev) => prev + 1);
-        }, 2500);
+            // nächster Slide (Loop zurück zum Anfang)
+            setCurrent(c => (c + 1) % n);
+        }, INTERVAL);
 
-        // Cleanup:
-        // Interval stoppen wenn Component entfernt wird
+        // Cleanup: Interval stoppen wenn Komponente entfernt wird
         return () => clearInterval(interval);
+    }, [n]);
 
-    }, []);
-
-    useEffect(() => {
-
-        // Wenn wir fast am Ende der Slides sind
-        if (index >= slides.length - 3) {
-
-            // Originalbilder erneut ans Ende anhängen
-            // Dadurch entsteht ein Infinite-Loop-Effekt
-            setSlides((prev) => [...prev, ...images]);
-        }
-
-    }, [index, slides.length, images]);
 
     return (
+        <div className="flex flex-col items-center py-10 select-none">
 
-        // Äußerer Container
-        <div className="w-full flex justify-center overflow-hidden py-10">
+            {/* Container für den Slider */}
+            <div className="relative w-full flex items-center justify-center h-[460px]">
 
-            {/* sichtbarer Carousel-Bereich */}
-            <div className="w-[1000px] overflow-hidden">
+                {SLIDES.map((slide, i) => {
 
-                {/* beweglicher Slider-Track */}
-                <motion.div
-                    className="flex gap-2"
-                    // horizontale Bewegung
-                    animate={{
-                        x: -(index * 326),
-                    }}
-                    // Animationseinstellungen
-                    transition={{
-                        duration: 0.8,
-                        ease: "easeInOut",
-                    }}
-                >
-                    {/* Alle Bilder rendern */}
-                    {slides.map((img, i) => (
+                    // Abstand vom aktuellen Slide
+                    const diff = i - current;
 
-                        <div
+                    // Korrigiert den Abstand für den "Loop-Effekt"
+                    const rel =
+                        diff > n / 2 ? diff - n :
+                            diff < -n / 2 ? diff + n :
+                                diff;
+
+                    // absoluter Abstand (für Größe/Transparenz)
+                    const abs = Math.abs(rel);
+
+                    return (
+                        <motion.div
                             key={i}
-                            className="
-                                min-w-[300px]
-                                h-[450px]
-                                overflow-hidden
-                                transition-all
-                                duration-200
-                            "
-                        >
-                            {/* Bild */}
-                            <img
-                                src={img}
-                                alt="slide"
-                                className="w-full h-full object-cover"
-                            />
+                            className="absolute w-[280px] h-[380px] rounded-md overflow-hidden"
 
-                        </div>
-                    ))}
-                </motion.div>
+                            // Animation für Position, Größe und Sichtbarkeit
+                            animate={{
+                                x: rel * 220, // horizontale Position
+                                scale: abs === 0 ? 1 : abs === 1 ? 0.78 : 0.62, // Größe
+                                opacity: abs === 0 ? 1 : abs === 1 ? 0.75 : 0.45, // Transparenz
+                                zIndex: abs === 0 ? 10 : abs === 1 ? 6 : 2, // Reihenfolge
+                            }}
+
+                            // Animationsdauer und easing
+                            transition={{
+                                duration: 0.55,
+                                ease: [0.25, 0.46, 0.45, 0.94],
+                            }}
+                        >
+                            <img
+                                src={slide.src}
+                                alt={slide.alt}
+                                className="w-full h-full object-cover"
+                                draggable={false}
+                            />
+                        </motion.div>
+                    );
+                })}
+            </div>
+
+            {/* Navigationspunkte (Dots) */}
+            <div className="flex gap-2 mt-7">
+                {SLIDES.map((_, i) => (
+                    <div
+                        key={i}
+                        className={`rounded-full transition-all duration-300 ${i === current
+                            ? "w-[9px] h-[9px] bg-gray-900 scale-125"
+                            : "w-[7px] h-[7px] bg-gray-300"
+                            }`}
+                    />
+                ))}
             </div>
         </div>
     );
